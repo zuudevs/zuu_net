@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/Project/zuu_net/build",
+  "command": "D:\\dev-tools\\LLVM\\bin\\clang-cl.exe  /nologo -TP -ID:\\Project\\zuu_net\\include /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -clang:-std=c++23 -MDd -Wall -Wextra -Wpedantic -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-sign-conversion -Wno-c++11-narrowing /FoCMakeFiles\\zuu_net.dir\\src\\main.cpp.obj /FdCMakeFiles\\zuu_net.dir\\ -c -- D:\\Project\\zuu_net\\src\\main.cpp",
+  "file": "D:/Project/zuu_net/src/main.cpp",
+  "output": "D:/Project/zuu_net/build/CMakeFiles/zuu_net.dir/src/main.cpp.obj"
+}
+]
