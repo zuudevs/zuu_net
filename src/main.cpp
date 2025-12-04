@@ -12,7 +12,7 @@ inline std::ostream& operator<<(std::ostream& os, const ipv4& address) noexcept 
 
 int main() {
 	auto ip1 = ipv4({192, 168, 1, 50}) ;
-	auto subnetmask = CreateSubnetMask(24) ;
+	auto subnetmask = zuu::util::Subnet{}(24) ;
 	std::cout << "IP Address\t\t: " << ip1 << '\n' ;
 	std::cout << "Netword Address\t\t: " << ip1.network_address(subnetmask) << '\n' ;
 	std::cout << "Broadcast Address\t: " << ip1.network_address(subnetmask) << '\n' ;

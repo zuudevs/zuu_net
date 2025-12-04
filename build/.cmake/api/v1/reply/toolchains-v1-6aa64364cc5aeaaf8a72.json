@@ -14,7 +14,7 @@
 					"linkLibraries" : []
 				},
 				"path" : "D:/dev-tools/LLVM/bin/clang-cl.exe",
-				"version" : "21.1.4"
+				"version" : "21.1.6"
 			},
 			"language" : "CXX",
 			"sourceFileExtensions" : 

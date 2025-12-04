@@ -8,13 +8,6 @@
 #include "../utils/clamp.hpp"
 
 namespace zuu::net {
-
-	template <std::integral Val>
-	[[nodiscard]] inline constexpr uint32_t CreateSubnetMask(Val prefix_length) noexcept {
-		uint32_t len = util::clamp{}(static_cast<uint32_t>(prefix_length), 0u, 32u);
-		return (len == 0) ? 0 : (0xFFFFFFFF << (32 - len));
-	}
-
 	class ipv4 {
 	public :
 		using elem = uint8_t ;
