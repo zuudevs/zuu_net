@@ -20,8 +20,8 @@ CMAKE_AR:FILEPATH=D:/dev-tools/LLVM/bin/llvm-lib.exe
 //No help, variable specified on the command line.
 CMAKE_BUILD_TYPE:STRING=Debug
 
-//CXX compiler
-CMAKE_CXX_COMPILER:STRING=D:/dev-tools/LLVM/bin/clang-cl.exe
+//No help, variable specified on the command line.
+CMAKE_CXX_COMPILER:FILEPATH=D:/dev-tools/LLVM/bin/clang-cl.exe
 
 //LLVM archiver
 CMAKE_CXX_COMPILER_AR:FILEPATH=D:/dev-tools/LLVM/bin/llvm-ar.exe

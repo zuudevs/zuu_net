@@ -2,12 +2,12 @@
 
 #include <bit>
 #include <concepts>
-#include "../meta/concepts.hpp"
+#include "../meta/arithmetic.hpp"
 
 namespace zuu::util {
     template <std::integral To, std::endian Order = std::endian::native, std::integral From, std::size_t N>
     requires (meta::less_equal_v<sizeof(From) * N, sizeof(To)>)
-    constexpr To from_array(const From(&data)[N]) noexcept {
+    [[nodiscard]] inline constexpr To from_array(const From(&data)[N]) noexcept {
         To result {0};
         
         for (std::size_t i = 0; i < N; i++) {

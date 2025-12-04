@@ -1824,8 +1824,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-mxgo6m"
-      binary: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-mxgo6m"
+      source: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-9o8er7"
+      binary: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-9o8er7"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "D:/dev-tools/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
@@ -1836,11 +1836,11 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-mxgo6m'
+        Change Dir: 'D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-9o8er7'
         
-        Run Build Command(s): D:/dev-tools/Ninja/ninja.exe -v cmTC_1bf4c
-        [1/2] D:\\dev-tools\\LLVM\\bin\\clang-cl.exe  /nologo -TP -D_MBCS  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_1bf4c.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_1bf4c.dir\\ -c -- D:\\dev-tools\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\dev-tools\\CMake\\bin\\cmake.exe -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_1bf4c.dir --rc=D:\\dev-tools\\LLVM\\bin\\llvm-rc.exe --mt=D:\\dev-tools\\LLVM\\bin\\llvm-mt.exe --manifests  -- D:\\dev-tools\\LLVM\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_1bf4c.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_1bf4c.exe /implib:cmTC_1bf4c.lib /pdb:cmTC_1bf4c.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console   && cd ."
+        Run Build Command(s): D:/dev-tools/Ninja/ninja.exe -v cmTC_e3abc
+        [1/2] D:\\dev-tools\\LLVM\\bin\\clang-cl.exe  /nologo -TP -D_MBCS  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_e3abc.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_e3abc.dir\\ -c -- D:\\dev-tools\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\dev-tools\\CMake\\bin\\cmake.exe -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_e3abc.dir --rc=D:\\dev-tools\\LLVM\\bin\\llvm-rc.exe --mt=D:\\dev-tools\\LLVM\\bin\\llvm-mt.exe --manifests  -- D:\\dev-tools\\LLVM\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_e3abc.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_e3abc.exe /implib:cmTC_e3abc.lib /pdb:cmTC_e3abc.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console   && cd ."
         
       exitCode: 0
   -
@@ -1904,8 +1904,8 @@ events:
     checks:
       - "Detecting CXX compile features"
     directories:
-      source: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-orjnja"
-      binary: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-orjnja"
+      source: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-p5939y"
+      binary: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-p5939y"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "D:/dev-tools/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
@@ -1915,11 +1915,11 @@ events:
       variable: "CMAKE_CXX_FEATURE_TEST"
       cached: true
       stdout: |
-        Change Dir: 'D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-orjnja'
+        Change Dir: 'D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-p5939y'
         
-        Run Build Command(s): D:/dev-tools/Ninja/ninja.exe -v cmTC_a1541
-        [1/2] D:\\dev-tools\\LLVM\\bin\\clang-cl.exe  /nologo -TP -D_MBCS  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -MDd   -std:c++14 /showIncludes /FoCMakeFiles\\cmTC_a1541.dir\\feature_tests.cxx.obj /FdCMakeFiles\\cmTC_a1541.dir\\ -c -- D:\\Project\\zuu_net\\build\\CMakeFiles\\CMakeScratch\\TryCompile-orjnja\\feature_tests.cxx
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\dev-tools\\CMake\\bin\\cmake.exe -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_a1541.dir --rc=D:\\dev-tools\\LLVM\\bin\\llvm-rc.exe --mt=D:\\dev-tools\\LLVM\\bin\\llvm-mt.exe --manifests  -- D:\\dev-tools\\LLVM\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_a1541.dir\\feature_tests.cxx.obj  /out:cmTC_a1541.exe /implib:cmTC_a1541.lib /pdb:cmTC_a1541.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): D:/dev-tools/Ninja/ninja.exe -v cmTC_20216
+        [1/2] D:\\dev-tools\\LLVM\\bin\\clang-cl.exe  /nologo -TP -D_MBCS  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -MDd   -std:c++14 /showIncludes /FoCMakeFiles\\cmTC_20216.dir\\feature_tests.cxx.obj /FdCMakeFiles\\cmTC_20216.dir\\ -c -- D:\\Project\\zuu_net\\build\\CMakeFiles\\CMakeScratch\\TryCompile-p5939y\\feature_tests.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\dev-tools\\CMake\\bin\\cmake.exe -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_20216.dir --rc=D:\\dev-tools\\LLVM\\bin\\llvm-rc.exe --mt=D:\\dev-tools\\LLVM\\bin\\llvm-mt.exe --manifests  -- D:\\dev-tools\\LLVM\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_20216.dir\\feature_tests.cxx.obj  /out:cmTC_20216.exe /implib:cmTC_20216.lib /pdb:cmTC_20216.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -1934,8 +1934,8 @@ events:
     checks:
       - "Detecting CXX compile features"
     directories:
-      source: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-jhbx2k"
-      binary: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-jhbx2k"
+      source: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-kgx7m1"
+      binary: "D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-kgx7m1"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "D:/dev-tools/LLVM/bin/clang-scan-deps.exe"
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
@@ -1945,11 +1945,282 @@ events:
       variable: "CMAKE_CXX_FEATURE_TEST"
       cached: true
       stdout: |
-        Change Dir: 'D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-jhbx2k'
+        Change Dir: 'D:/Project/zuu_net/build/CMakeFiles/CMakeScratch/TryCompile-kgx7m1'
         
-        Run Build Command(s): D:/dev-tools/Ninja/ninja.exe -v cmTC_28c29
-        [1/2] D:\\dev-tools\\LLVM\\bin\\clang-cl.exe  /nologo -TP -D_MBCS  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_28c29.dir\\feature_tests.cxx.obj /FdCMakeFiles\\cmTC_28c29.dir\\ -c -- D:\\Project\\zuu_net\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jhbx2k\\feature_tests.cxx
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\dev-tools\\CMake\\bin\\cmake.exe -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_28c29.dir --rc=D:\\dev-tools\\LLVM\\bin\\llvm-rc.exe --mt=D:\\dev-tools\\LLVM\\bin\\llvm-mt.exe --manifests  -- D:\\dev-tools\\LLVM\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_28c29.dir\\feature_tests.cxx.obj  /out:cmTC_28c29.exe /implib:cmTC_28c29.lib /pdb:cmTC_28c29.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): D:/dev-tools/Ninja/ninja.exe -v cmTC_9f3db
+        [1/2] D:\\dev-tools\\LLVM\\bin\\clang-cl.exe  /nologo -TP -D_MBCS  /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_9f3db.dir\\feature_tests.cxx.obj /FdCMakeFiles\\cmTC_9f3db.dir\\ -c -- D:\\Project\\zuu_net\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kgx7m1\\feature_tests.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\dev-tools\\CMake\\bin\\cmake.exe -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_9f3db.dir --rc=D:\\dev-tools\\LLVM\\bin\\llvm-rc.exe --mt=D:\\dev-tools\\LLVM\\bin\\llvm-mt.exe --manifests  -- D:\\dev-tools\\LLVM\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_9f3db.dir\\feature_tests.cxx.obj  /out:cmTC_9f3db.exe /implib:cmTC_9f3db.lib /pdb:cmTC_9f3db.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "D:/dev-tools/CMake/share/cmake-4.2/Modules/Platform/Windows-Clang.cmake:210 (find_program)"
+      - "D:/dev-tools/CMake/share/cmake-4.2/Modules/Platform/Windows-Clang-CXX.cmake:1 (include)"
+      - "D:/dev-tools/CMake/share/cmake-4.2/Modules/CMakeCXXInformation.cmake:48 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "__RC_COMPILER_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rc"
+    candidate_directories:
+      - "D:/dev-tools/LLVM/bin/"
+      - "D:/dev-tools/Zulu/zulu-21/bin/"
+      - "C:/Users/ASUS/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/ASUS/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Java/jdk-25/bin/"
+      - "D:/dev-tools/CMake/bin/"
+      - "D:/dev-tools/Ninja/"
+      - "D:/Project/zuu_net/build/%LOCALAPPDATA%/Microsoft/WindowsApps/"
+      - "D:/dev-tools/flutter/bin/"
+      - "D:/dev-tools/git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Users/ASUS/.dotnet/tools/"
+      - "C:/Users/ASUS/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "D:/dev-tools/CMake/bin/"
+      - "D:/dev-tools/CMake/sbin/"
+      - "D:/dev-tools/CMake/"
+      - "C:/Program Files (x86)/zuu_net/bin/"
+      - "C:/Program Files (x86)/zuu_net/sbin/"
+      - "C:/Program Files (x86)/zuu_net/"
+    searched_directories:
+      - "D:/dev-tools/LLVM/bin/rc.com"
+      - "D:/dev-tools/LLVM/bin/rc.exe"
+      - "D:/dev-tools/LLVM/bin/rc"
+      - "D:/dev-tools/Zulu/zulu-21/bin/rc.com"
+      - "D:/dev-tools/Zulu/zulu-21/bin/rc.exe"
+      - "D:/dev-tools/Zulu/zulu-21/bin/rc"
+      - "C:/Users/ASUS/AppData/Local/Programs/Python/Python313/rc.com"
+      - "C:/Users/ASUS/AppData/Local/Programs/Python/Python313/rc.exe"
+      - "C:/Users/ASUS/AppData/Local/Programs/Python/Python313/rc"
+      - "C:/Users/ASUS/AppData/Local/Programs/Python/Python313/Scripts/rc.com"
+      - "C:/Users/ASUS/AppData/Local/Programs/Python/Python313/Scripts/rc.exe"
+      - "C:/Users/ASUS/AppData/Local/Programs/Python/Python313/Scripts/rc"
+      - "C:/Windows/System32/rc.com"
+      - "C:/Windows/System32/rc.exe"
+      - "C:/Windows/System32/rc"
+      - "C:/Windows/rc.com"
+      - "C:/Windows/rc.exe"
+      - "C:/Windows/rc"
+      - "C:/Windows/System32/wbem/rc.com"
+      - "C:/Windows/System32/wbem/rc.exe"
+      - "C:/Windows/System32/wbem/rc"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc"
+      - "C:/Windows/System32/OpenSSH/rc.com"
+      - "C:/Windows/System32/OpenSSH/rc.exe"
+      - "C:/Windows/System32/OpenSSH/rc"
+      - "C:/Program Files/Java/jdk-25/bin/rc.com"
+      - "C:/Program Files/Java/jdk-25/bin/rc.exe"
+      - "C:/Program Files/Java/jdk-25/bin/rc"
+      - "D:/dev-tools/CMake/bin/rc.com"
+      - "D:/dev-tools/CMake/bin/rc.exe"
+      - "D:/dev-tools/CMake/bin/rc"
+      - "D:/dev-tools/Ninja/rc.com"
+      - "D:/dev-tools/Ninja/rc.exe"
+      - "D:/dev-tools/Ninja/rc"
+      - "D:/Project/zuu_net/build/%LOCALAPPDATA%/Microsoft/WindowsApps/rc.com"
+      - "D:/Project/zuu_net/build/%LOCALAPPDATA%/Microsoft/WindowsApps/rc.exe"
+      - "D:/Project/zuu_net/build/%LOCALAPPDATA%/Microsoft/WindowsApps/rc"
+      - "D:/dev-tools/flutter/bin/rc.com"
+      - "D:/dev-tools/flutter/bin/rc.exe"
+      - "D:/dev-tools/flutter/bin/rc"
+      - "D:/dev-tools/git/cmd/rc.com"
+      - "D:/dev-tools/git/cmd/rc.exe"
+      - "D:/dev-tools/git/cmd/rc"
+      - "C:/Program Files/dotnet/rc.com"
+      - "C:/Program Files/dotnet/rc.exe"
+      - "C:/Program Files/dotnet/rc"
+      - "C:/Users/ASUS/.dotnet/tools/rc.com"
+      - "C:/Users/ASUS/.dotnet/tools/rc.exe"
+      - "C:/Users/ASUS/.dotnet/tools/rc"
+      - "C:/Users/ASUS/AppData/Local/Programs/Microsoft VS Code/bin/rc.com"
+      - "C:/Users/ASUS/AppData/Local/Programs/Microsoft VS Code/bin/rc.exe"
+      - "C:/Users/ASUS/AppData/Local/Programs/Microsoft VS Code/bin/rc"
+      - "C:/Program Files/bin/rc.com"
+      - "C:/Program Files/bin/rc.exe"
+      - "C:/Program Files/bin/rc"
+      - "C:/Program Files/sbin/rc.com"
+      - "C:/Program Files/sbin/rc.exe"
+      - "C:/Program Files/sbin/rc"
+      - "C:/Program Files/rc.com"
+      - "C:/Program Files/rc.exe"
+      - "C:/Program Files/rc"
+      - "C:/Program Files (x86)/bin/rc.com"
+      - "C:/Program Files (x86)/bin/rc.exe"
+      - "C:/Program Files (x86)/bin/rc"
+      - "C:/Program Files (x86)/sbin/rc.com"
+      - "C:/Program Files (x86)/sbin/rc.exe"
+      - "C:/Program Files (x86)/sbin/rc"
+      - "C:/Program Files (x86)/rc.com"
+      - "C:/Program Files (x86)/rc.exe"
+      - "C:/Program Files (x86)/rc"
+      - "D:/dev-tools/CMake/bin/rc.com"
+      - "D:/dev-tools/CMake/bin/rc.exe"
+      - "D:/dev-tools/CMake/bin/rc"
+      - "D:/dev-tools/CMake/sbin/rc.com"
+      - "D:/dev-tools/CMake/sbin/rc.exe"
+      - "D:/dev-tools/CMake/sbin/rc"
+      - "D:/dev-tools/CMake/rc.com"
+      - "D:/dev-tools/CMake/rc.exe"
+      - "D:/dev-tools/CMake/rc"
+      - "C:/Program Files (x86)/zuu_net/bin/rc.com"
+      - "C:/Program Files (x86)/zuu_net/bin/rc.exe"
+      - "C:/Program Files (x86)/zuu_net/bin/rc"
+      - "C:/Program Files (x86)/zuu_net/sbin/rc.com"
+      - "C:/Program Files (x86)/zuu_net/sbin/rc.exe"
+      - "C:/Program Files (x86)/zuu_net/sbin/rc"
+      - "C:/Program Files (x86)/zuu_net/rc.com"
+      - "C:/Program Files (x86)/zuu_net/rc.exe"
+      - "C:/Program Files (x86)/zuu_net/rc"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "D:\\dev-tools\\LLVM\\bin"
+        - "D:\\dev-tools\\Zulu\\zulu-21\\bin\\"
+        - "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Python\\Python313"
+        - "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Python\\Python313\\Scripts"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Java\\jdk-25\\bin"
+        - "D:\\dev-tools\\CMake\\bin"
+        - "D:\\dev-tools\\Ninja"
+        - "%LOCALAPPDATA%\\Microsoft\\WindowsApps"
+        - "D:\\dev-tools\\flutter\\bin"
+        - "D:\\dev-tools\\LLVM\\bin"
+        - "D:\\dev-tools\\git\\cmd"
+        - "C:\\Program Files\\Java\\jdk-25\\bin"
+        - "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Python\\Python313"
+        - "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Python\\Python313\\Scripts"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Users\\ASUS\\.dotnet\\tools"
+        - "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/zuu_net"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/dev-tools/CMake"
+        - "C:/Program Files (x86)/zuu_net"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "D:/dev-tools/CMake/share/cmake-4.2/Modules/Platform/Windows-Clang.cmake:216 (find_program)"
+      - "D:/dev-tools/CMake/share/cmake-4.2/Modules/Platform/Windows-Clang-CXX.cmake:1 (include)"
+      - "D:/dev-tools/CMake/share/cmake-4.2/Modules/CMakeCXXInformation.cmake:48 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "__RC_COMPILER_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-rc"
+    candidate_directories:
+      - "D:/dev-tools/LLVM/bin/"
+      - "D:/dev-tools/Zulu/zulu-21/bin/"
+      - "C:/Users/ASUS/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/ASUS/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Java/jdk-25/bin/"
+      - "D:/dev-tools/CMake/bin/"
+      - "D:/dev-tools/Ninja/"
+      - "D:/Project/zuu_net/build/%LOCALAPPDATA%/Microsoft/WindowsApps/"
+      - "D:/dev-tools/flutter/bin/"
+      - "D:/dev-tools/git/cmd/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Users/ASUS/.dotnet/tools/"
+      - "C:/Users/ASUS/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "D:/dev-tools/CMake/bin/"
+      - "D:/dev-tools/CMake/sbin/"
+      - "D:/dev-tools/CMake/"
+      - "C:/Program Files (x86)/zuu_net/bin/"
+      - "C:/Program Files (x86)/zuu_net/sbin/"
+      - "C:/Program Files (x86)/zuu_net/"
+    searched_directories:
+      - "D:/dev-tools/LLVM/bin/llvm-rc.com"
+    found: "D:/dev-tools/LLVM/bin/llvm-rc.exe"
+    search_context:
+      ENV{PATH}:
+        - "D:\\dev-tools\\LLVM\\bin"
+        - "D:\\dev-tools\\Zulu\\zulu-21\\bin\\"
+        - "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Python\\Python313"
+        - "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Python\\Python313\\Scripts"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Java\\jdk-25\\bin"
+        - "D:\\dev-tools\\CMake\\bin"
+        - "D:\\dev-tools\\Ninja"
+        - "%LOCALAPPDATA%\\Microsoft\\WindowsApps"
+        - "D:\\dev-tools\\flutter\\bin"
+        - "D:\\dev-tools\\LLVM\\bin"
+        - "D:\\dev-tools\\git\\cmd"
+        - "C:\\Program Files\\Java\\jdk-25\\bin"
+        - "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Python\\Python313"
+        - "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Python\\Python313\\Scripts"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Users\\ASUS\\.dotnet\\tools"
+        - "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/zuu_net"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/dev-tools/CMake"
+        - "C:/Program Files (x86)/zuu_net"
 ...

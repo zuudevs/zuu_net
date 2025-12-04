@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../meta/concepts.hpp"
+#include "../meta/arithmetic.hpp"
 
 namespace zuu::util {
 

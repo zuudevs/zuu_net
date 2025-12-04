@@ -1,23 +1,26 @@
 #include <iostream>
-#include "zuu/net.hpp"
+#include "zuu/core/tcp_socket.hpp" // Sesuaikan path include-nya
 
 using namespace zuu::net ;
 
-inline std::ostream& operator<<(std::ostream& os, const ipv4& address) noexcept {
-	for(auto& octet : address) {
-		os << static_cast<uint32_t>(octet) << (&octet != (address.end() - 1) ? '.' : '\0') ;
-	}
-	return os ;
-}
-
 int main() {
-	auto ip1 = ipv4({192, 168, 1, 50}) ;
-	auto subnetmask = zuu::util::Subnet{}(24) ;
-	std::cout << "IP Address\t\t: " << ip1 << '\n' ;
-	std::cout << "Netword Address\t\t: " << ip1.network_address(subnetmask) << '\n' ;
-	std::cout << "Broadcast Address\t: " << ip1.network_address(subnetmask) << '\n' ;
-	auto host_range = ip1.host_range(subnetmask) ;
-	std::cout << "Host Ranges\t\t: " << host_range.first << " - " << host_range.last << '\n' ;
+    try {
+        std::cout << "Membuat socket...\n";
+        zuu::net::TcpSocket client;
 
-	return 0 ;
+        // Kita coba connect ke Google DNS (8.8.8.8:53)
+        // 8.8.8.8 = 8, 8, 8, 8
+        zuu::net::SocketAddress target(ipv4({8, 8, 8, 8}), 53);
+
+        std::cout << "Mencoba connect ke " << target << "...\n";
+        client.connect(target);
+
+        std::cout << "BERHASIL! Koneksi terhubung.\n";
+        std::cout << "Socket otomatis ditutup saat keluar scope.\n";
+        
+    } catch (const std::exception& e) {
+        std::cerr << "ERROR: " << e.what() << "\n";
+    }
+
+    return 0;
 }
