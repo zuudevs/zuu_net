@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: zuu_net
+# Project: grid_watcher
 # Configurations: Debug
 # =============================================================================
 
@@ -41,45 +41,58 @@ include CMakeFiles\rules.ninja
 
 cmake_ninja_workdir = D$:\Project\zuu_net\build\
 # =============================================================================
-# Object build statements for EXECUTABLE target zuu_net
+# Object build statements for EXECUTABLE target grid_watcher
 
 
 #############################################
-# Order-only phony target for zuu_net
+# Order-only phony target for grid_watcher
 
-build cmake_object_order_depends_target_zuu_net: phony || .
+build cmake_object_order_depends_target_grid_watcher: phony || .
 
-build CMakeFiles\zuu_net.dir\src\main.cpp.obj: CXX_COMPILER__zuu_net_unscanned_Debug D$:\Project\zuu_net\src\main.cpp || cmake_object_order_depends_target_zuu_net
+build CMakeFiles\grid_watcher.dir\src\main.cpp.obj: CXX_COMPILER__grid_watcher_unscanned_Debug D$:\Project\zuu_net\src\main.cpp || cmake_object_order_depends_target_grid_watcher
   CONFIG = Debug
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -clang:-std=c++23 -MDd -Wall -Wextra -Wpedantic -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-sign-conversion -Wno-c++11-narrowing
+  DEFINES = -D_WIN32_WINNT=0x0601
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -clang:-std=c++23 -MDd -flto=thin -Wall -Wextra -Wpedantic -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-sign-conversion -Wno-c++11-narrowing -g -O0
   INCLUDES = -ID:\Project\zuu_net\include
-  OBJECT_DIR = CMakeFiles\zuu_net.dir
-  OBJECT_FILE_DIR = CMakeFiles\zuu_net.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\zuu_net.dir\
-  TARGET_PDB = D:\Project\zuu_net\bin\zuu_net.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\zuu_net.dir
+  OBJECT_DIR = CMakeFiles\grid_watcher.dir
+  OBJECT_FILE_DIR = CMakeFiles\grid_watcher.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\grid_watcher.dir\
+  TARGET_PDB = D:\Project\zuu_net\bin\grid_watcher.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\grid_watcher.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target zuu_net
+# Link build statements for EXECUTABLE target grid_watcher
 
 
 #############################################
-# Link the executable D:\Project\zuu_net\bin\zuu_net.exe
+# Link the executable D:\Project\zuu_net\bin\grid_watcher.exe
 
-build D$:\Project\zuu_net\bin\zuu_net.exe: CXX_EXECUTABLE_LINKER__zuu_net_Debug CMakeFiles\zuu_net.dir\src\main.cpp.obj
+build D$:\Project\zuu_net\bin\grid_watcher.exe: CXX_EXECUTABLE_LINKER__grid_watcher_Debug CMakeFiles\grid_watcher.dir\src\main.cpp.obj
   CONFIG = Debug
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
-  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  OBJECT_DIR = CMakeFiles\zuu_net.dir
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd -flto=thin
+  LINK_FLAGS = /machine:x64 -flto /debug /INCREMENTAL /subsystem:console
+  LINK_LIBRARIES = ws2_32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  OBJECT_DIR = CMakeFiles\grid_watcher.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\zuu_net.dir\
-  TARGET_FILE = D:\Project\zuu_net\bin\zuu_net.exe
-  TARGET_IMPLIB = zuu_net.lib
-  TARGET_PDB = D:\Project\zuu_net\bin\zuu_net.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\zuu_net.dir
+  TARGET_COMPILE_PDB = CMakeFiles\grid_watcher.dir\
+  TARGET_FILE = D:\Project\zuu_net\bin\grid_watcher.exe
+  TARGET_IMPLIB = D:\Project\zuu_net\lib\grid_watcher.lib
+  TARGET_PDB = D:\Project\zuu_net\bin\grid_watcher.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\grid_watcher.dir
+
+
+#############################################
+# Utility command for memcheck
+
+build memcheck: phony CMakeFiles\memcheck D$:\Project\zuu_net\bin\grid_watcher.exe
+
+
+#############################################
+# Utility command for callgrind
+
+build callgrind: phony CMakeFiles\callgrind D$:\Project\zuu_net\bin\grid_watcher.exe
 
 
 #############################################
@@ -105,12 +118,58 @@ build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
 
 build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
+
+#############################################
+# Utility command for list_install_components
+
+build list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build CMakeFiles\install.util: CUSTOM_COMMAND all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Project\zuu_net\build && D:\dev-tools\CMake\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build install: phony CMakeFiles\install.util
+
+
+#############################################
+# Utility command for install/local
+
+build CMakeFiles\install\local.util: CUSTOM_COMMAND all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Project\zuu_net\build && D:\dev-tools\CMake\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build install\local: phony CMakeFiles\install\local.util
+
+
+#############################################
+# Custom command for CMakeFiles\memcheck
+
+build CMakeFiles\memcheck | ${cmake_ninja_workdir}CMakeFiles\memcheck: CUSTOM_COMMAND D$:\Project\zuu_net\bin\grid_watcher.exe || D$:\Project\zuu_net\bin\grid_watcher.exe
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Project\zuu_net\bin && valgrind --leak-check=full --show-leak-kinds=all D:/Project/zuu_net/bin/grid_watcher"
+  DESC = Running memory leak detection
+
+
+#############################################
+# Custom command for CMakeFiles\callgrind
+
+build CMakeFiles\callgrind | ${cmake_ninja_workdir}CMakeFiles\callgrind: CUSTOM_COMMAND D$:\Project\zuu_net\bin\grid_watcher.exe || D$:\Project\zuu_net\bin\grid_watcher.exe
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Project\zuu_net\bin && valgrind --tool=callgrind D:/Project/zuu_net/bin/grid_watcher"
+  DESC = Running Callgrind profiler
+
 # =============================================================================
 # Target aliases.
 
-build zuu_net: phony D$:\Project\zuu_net\bin\zuu_net.exe
+build grid_watcher: phony D$:\Project\zuu_net\bin\grid_watcher.exe
 
-build zuu_net.exe: phony D$:\Project\zuu_net\bin\zuu_net.exe
+build grid_watcher.exe: phony D$:\Project\zuu_net\bin\grid_watcher.exe
 
 # =============================================================================
 # Folder targets.
@@ -120,7 +179,7 @@ build zuu_net.exe: phony D$:\Project\zuu_net\bin\zuu_net.exe
 #############################################
 # Folder: D:/Project/zuu_net/build
 
-build all: phony D$:\Project\zuu_net\bin\zuu_net.exe
+build all: phony D$:\Project\zuu_net\bin\grid_watcher.exe
 
 # =============================================================================
 # Built-in targets

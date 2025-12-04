@@ -1,3 +1,6 @@
 # ninja log v7
-3	2838	7865263948123081	CMakeFiles/zuu_net.dir/src/main.cpp.obj	e09625ae37581f51
 2840	3726	7865263976488690	D:/Project/zuu_net/bin/zuu_net.exe	8ad254a7e54c70f3
+16	3585	7865307857006829	CMakeFiles/grid_watcher.dir/src/main.cpp.obj	eb5732d929ae6c16
+3590	7241	7865307892747916	D:/Project/zuu_net/bin/grid_watcher.exe	2ea1f258cf2790c3
+55	4000	7865310169124782	CMakeFiles/grid_watcher.dir/src/main.cpp.obj	eb5732d929ae6c16
+4001	5904	7865310208577066	D:/Project/zuu_net/bin/grid_watcher.exe	2ea1f258cf2790c3

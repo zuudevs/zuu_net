@@ -1,12 +1,18 @@
+// ============================================================================
+// FILE: src/main.cpp
+// Grid-Watcher Demo & Benchmark
+// ============================================================================
+
 #include "zuu/grid_watcher.hpp"
 #include <iostream>
 #include <iomanip>
 #include <random>
 #include <csignal>
+#include <memory>
 
 using namespace zuu;
 
-// Global grid watcher instance untuk signal handler
+// Global instance for signal handler
 std::unique_ptr<scada::GridWatcher> g_watcher;
 
 void signalHandler(int signum) {
@@ -17,22 +23,27 @@ void signalHandler(int signum) {
     exit(signum);
 }
 
-// Simulate Modbus TCP packet
-std::vector<std::byte> createModbusPacket(uint16_t transaction_id, uint8_t unit_id,
-                                          uint8_t function_code, uint16_t address, 
+// ============================================================================
+// Packet Generation Helpers
+// ============================================================================
+
+std::vector<std::byte> createModbusPacket(uint16_t transaction_id, 
+                                          uint8_t unit_id,
+                                          uint8_t function_code, 
+                                          uint16_t address, 
                                           uint16_t count) {
     std::vector<std::byte> packet;
     
-    // MBAP Header
+    // MBAP Header (7 bytes)
     packet.push_back(std::byte(transaction_id >> 8));
     packet.push_back(std::byte(transaction_id & 0xFF));
-    packet.push_back(std::byte(0x00));  // Protocol ID
+    packet.push_back(std::byte(0x00));  // Protocol ID (always 0x0000)
     packet.push_back(std::byte(0x00));
-    packet.push_back(std::byte(0x00));  // Length (will be 6 for read)
-    packet.push_back(std::byte(0x06));
+    packet.push_back(std::byte(0x00));  // Length MSB
+    packet.push_back(std::byte(0x06));  // Length LSB (6 bytes following)
     packet.push_back(std::byte(unit_id));
     
-    // PDU
+    // PDU (Protocol Data Unit)
     packet.push_back(std::byte(function_code));
     packet.push_back(std::byte(address >> 8));
     packet.push_back(std::byte(address & 0xFF));
@@ -42,111 +53,177 @@ std::vector<std::byte> createModbusPacket(uint16_t transaction_id, uint8_t unit_
     return packet;
 }
 
-// Simulate attack scenarios
+// ============================================================================
+// Attack Simulation Scenarios
+// ============================================================================
+
 void simulateNormalTraffic(scada::GridWatcher& watcher, int count = 10) {
     std::cout << "\n=== Simulating Normal SCADA Traffic ===\n";
     
-    net::ipv4 plc_ip({192, 168, 1, 100});  // PLC
-    net::ipv4 scada_ip({192, 168, 1, 10}); // SCADA Master
+    net::ipv4 plc_ip({192, 168, 1, 100});      // PLC
+    net::ipv4 scada_master_ip({192, 168, 1, 10}); // SCADA Master
     
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> addr_dist(0, 1000);
+    std::uniform_int_distribution<> addr_dist(100, 1000);  // Normal register range
     std::uniform_int_distribution<> count_dist(1, 10);
     
     for (int i = 0; i < count; ++i) {
         // Normal read operations
         auto packet = createModbusPacket(
-            i + 1,                    // Transaction ID
-            1,                        // Unit ID
-            0x03,                     // Read Holding Registers
-            addr_dist(gen),           // Random address
-            count_dist(gen)           // Random count
+            i + 1,                  // Transaction ID
+            1,                      // Unit ID
+            0x03,                   // Function: Read Holding Registers
+            addr_dist(gen),         // Random address
+            count_dist(gen)         // Random count
         );
         
-        watcher.processPacket(packet, scada_ip, plc_ip, 5000 + i, 502);
+        bool allowed = watcher.processPacket(
+            packet, 
+            scada_master_ip, 
+            plc_ip, 
+            5000 + i, 
+            502
+        );
+        
+        if (!allowed) {
+            std::wcout << "  ⚠️  Packet #" << i << " was dropped!\n";
+        }
+        
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     
-    std::cout << "Normal traffic simulation completed\n";
+    std::wcout << "✓ Normal traffic simulation completed\n";
 }
 
 void simulatePortScan(scada::GridWatcher& watcher) {
     std::cout << "\n=== Simulating Port Scan Attack ===\n";
     
-    net::ipv4 attacker_ip({10, 0, 0, 50});     // Attacker
-    net::ipv4 target_ip({192, 168, 1, 100});   // PLC
+    net::ipv4 attacker_ip({10, 0, 0, 50});      // External attacker
+    net::ipv4 target_ip({192, 168, 1, 100});    // Target PLC
     
     // Rapidly scan multiple ports
+    int dropped = 0;
     for (uint16_t port = 500; port < 520; ++port) {
         auto packet = createModbusPacket(1, 1, 0x03, 0, 1);
-        watcher.processPacket(packet, attacker_ip, target_ip, 50000, port);
+        
+        bool allowed = watcher.processPacket(
+            packet, 
+            attacker_ip, 
+            target_ip, 
+            50000, 
+            port
+        );
+        
+        if (!allowed) dropped++;
+        
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
     
-    std::cout << "Port scan simulation completed\n";
+    std::wcout << "✓ Port scan simulation completed (" << dropped << " packets dropped)\n";
 }
 
 void simulateDoSAttack(scada::GridWatcher& watcher) {
     std::cout << "\n=== Simulating DoS Flood Attack ===\n";
     
-    net::ipv4 attacker_ip({10, 0, 0, 66});     // Attacker
-    net::ipv4 target_ip({192, 168, 1, 100});   // PLC
+    net::ipv4 attacker_ip({10, 0, 0, 66});      // Attacker
+    net::ipv4 target_ip({192, 168, 1, 100});    // Target PLC
     
-    // Flood with packets
+    // Flood with packets (no delay)
+    int dropped = 0;
     for (int i = 0; i < 2000; ++i) {
         auto packet = createModbusPacket(i, 1, 0x03, 0, 1);
-        watcher.processPacket(packet, attacker_ip, target_ip, 60000, 502);
-        // No sleep - flood!
+        
+        bool allowed = watcher.processPacket(
+            packet, 
+            attacker_ip, 
+            target_ip, 
+            60000, 
+            502
+        );
+        
+        if (!allowed) dropped++;
+        
+        // Minimal delay to simulate flood
+        if (i % 100 == 0) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        }
     }
     
-    std::cout << "DoS attack simulation completed\n";
+    std::wcout << "✓ DoS attack simulation completed (" << dropped << " packets dropped)\n";
 }
 
 void simulateUnauthorizedWrite(scada::GridWatcher& watcher) {
     std::cout << "\n=== Simulating Unauthorized Write Attack ===\n";
     
-    net::ipv4 attacker_ip({203, 0, 113, 45});  // External attacker
-    net::ipv4 plc_ip({192, 168, 1, 100});      // PLC
+    net::ipv4 attacker_ip({203, 0, 113, 45});   // External attacker
+    net::ipv4 plc_ip({192, 168, 1, 100});       // Target PLC
     
     // Try to write to critical registers (0-99)
+    int dropped = 0;
     for (int i = 0; i < 10; ++i) {
         auto packet = createModbusPacket(
-            100 + i,                  // Transaction ID
-            1,                        // Unit ID
-            0x10,                     // Write Multiple Registers
-            i * 10,                   // Critical address
-            1                         // Count
+            100 + i,                // Transaction ID
+            1,                      // Unit ID
+            0x10,                   // Function: Write Multiple Registers
+            i * 10,                 // Critical address (0-90)
+            1                       // Count
         );
         
-        watcher.processPacket(packet, attacker_ip, plc_ip, 40000 + i, 502);
+        bool allowed = watcher.processPacket(
+            packet, 
+            attacker_ip, 
+            plc_ip, 
+            40000 + i, 
+            502
+        );
+        
+        if (!allowed) dropped++;
+        
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
     
-    std::cout << "Unauthorized write simulation completed\n";
+    std::cout << "✓ Unauthorized write simulation completed (" << dropped << " packets dropped)\n";
 }
 
 void simulateMalformedPackets(scada::GridWatcher& watcher) {
     std::cout << "\n=== Simulating Malformed Packets ===\n";
     
-    net::ipv4 attacker_ip({198, 51, 100, 88}); // Attacker
-    net::ipv4 target_ip({192, 168, 1, 100});   // PLC
+    net::ipv4 attacker_ip({198, 51, 100, 88});  // Attacker
+    net::ipv4 target_ip({192, 168, 1, 100});    // Target PLC
     
-    // Send malformed packets
+    int dropped = 0;
     for (int i = 0; i < 5; ++i) {
+        // Create malformed Modbus packet (wrong protocol ID)
         std::vector<std::byte> malformed = {
-            std::byte(0xFF), std::byte(0xFF),  // Wrong transaction ID
-            std::byte(0xFF), std::byte(0xFF),  // Wrong protocol ID (should be 0x0000)
+            std::byte(0x00), std::byte(0x01),  // Transaction ID
+            std::byte(0xFF), std::byte(0xFF),  // WRONG Protocol ID (should be 0x0000)
             std::byte(0x00), std::byte(0x06),  // Length
-            std::byte(0x01)                     // Unit ID
+            std::byte(0x01),                   // Unit ID
+            std::byte(0x03),                   // Function code
+            std::byte(0x00), std::byte(0x00),  // Address
+            std::byte(0x00), std::byte(0x01)   // Count
         };
         
-        watcher.processPacket(malformed, attacker_ip, target_ip, 30000 + i, 502);
+        bool allowed = watcher.processPacket(
+            malformed, 
+            attacker_ip, 
+            target_ip, 
+            30000 + i, 
+            502
+        );
+        
+        if (!allowed) dropped++;
+        
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     
-    std::cout << "Malformed packets simulation completed\n";
+    std::wcout << "✓ Malformed packets simulation completed (" << dropped << " packets dropped)\n";
 }
+
+// ============================================================================
+// Statistics Display
+// ============================================================================
 
 void printStatistics(const scada::GridWatcher& watcher) {
     std::cout << "\n" << std::string(80, '=') << "\n";
@@ -155,26 +232,26 @@ void printStatistics(const scada::GridWatcher& watcher) {
     
     auto stats = watcher.getStatistics();
     
-    std::cout << std::left << std::setw(30) << "Uptime:" 
+    std::cout << std::left << std::setw(35) << "Uptime:" 
               << stats.uptime.count() << " seconds\n";
-    std::cout << std::left << std::setw(30) << "Packets Processed:" 
+    std::cout << std::left << std::setw(35) << "Packets Processed:" 
               << stats.packets_processed << "\n";
-    std::cout << std::left << std::setw(30) << "Packets Per Second:" 
+    std::cout << std::left << std::setw(35) << "Packets Per Second:" 
               << std::fixed << std::setprecision(2) << stats.packets_per_second << "\n";
-    std::cout << std::left << std::setw(30) << "Threats Detected:" 
+    std::cout << std::left << std::setw(35) << "Packets Allowed:" 
+              << stats.packets_allowed << " (" 
+              << std::fixed << std::setprecision(1) << stats.allow_rate << "%)\n";
+    std::cout << std::left << std::setw(35) << "Packets Dropped:" 
+              << stats.packets_dropped << " (" 
+              << std::fixed << std::setprecision(1) << stats.drop_rate << "%)\n";
+    std::cout << std::left << std::setw(35) << "Threats Detected:" 
               << stats.threats_detected << "\n";
-    std::cout << std::left << std::setw(30) << "Threat Rate (per min):" 
+    std::cout << std::left << std::setw(35) << "Threat Rate (per min):" 
               << std::fixed << std::setprecision(2) << stats.threat_rate << "\n";
-    std::cout << std::left << std::setw(30) << "Packets Dropped:" 
-              << stats.packets_dropped << "\n";
-    std::cout << std::left << std::setw(30) << "Drop Rate:" 
-              << std::fixed << std::setprecision(2) << stats.drop_rate << "%\n";
-    std::cout << std::left << std::setw(30) << "Active IP Blocks:" 
+    std::cout << std::left << std::setw(35) << "Active IP Blocks:" 
               << stats.active_blocks << "\n";
-    std::cout << std::left << std::setw(30) << "Total Blocks (lifetime):" 
+    std::cout << std::left << std::setw(35) << "Total Blocks (lifetime):" 
               << stats.total_blocks << "\n";
-    std::cout << std::left << std::setw(30) << "Active IPs Being Monitored:" 
-              << stats.active_ips << "\n";
     
     std::cout << "\n" << std::string(80, '-') << "\n";
     std::cout << "BLOCKED IPs:\n";
@@ -185,7 +262,7 @@ void printStatistics(const scada::GridWatcher& watcher) {
         std::cout << "  (none)\n";
     } else {
         for (const auto& block : blocked) {
-            std::cout << "  • " << block.ip 
+            std::cout << "  • " << block.ip.toString()
                       << " - Reason: " << scada::to_string(block.reason)
                       << " - Violations: " << block.violation_count;
             if (block.permanent) {
@@ -198,51 +275,80 @@ void printStatistics(const scada::GridWatcher& watcher) {
     std::cout << std::string(80, '=') << "\n\n";
 }
 
+// ============================================================================
+// Main Function
+// ============================================================================
+
 int main() {
-    std::cout << R"(
+    std::wcout << R"(
     ╔═══════════════════════════════════════════════════════════════╗
     ║                                                               ║
     ║              GRID-WATCHER: SCADA Security System              ║
     ║        Real-time Monitoring & Mitigation for SCADA Networks   ║
     ║                                                               ║
-    ║  • Low-Latency Native C++ Implementation                      ║
+    ║  • Ultra-Low-Latency Native C++ Implementation                ║
     ║  • Behavioral Analysis & Anomaly Detection                    ║
     ║  • Automated Threat Mitigation                                ║
-    ║  • Real-time Packet Inspection                                ║
+    ║  • Lock-Free High-Performance Architecture                    ║
     ║                                                               ║
     ╚═══════════════════════════════════════════════════════════════╝
     )" << std::endl;
     
-    // Setup signal handler
+    // Setup signal handler for graceful shutdown
     signal(SIGINT, signalHandler);
     signal(SIGTERM, signalHandler);
     
     try {
-        // Configure detection parameters
+        // ====================================================================
+        // Configure Detection Parameters
+        // ====================================================================
         scada::DetectionConfig config;
-        config.port_scan_threshold = 10;
-        config.dos_packet_threshold = 500;
-        config.dos_byte_threshold = 5'000'000;
-        config.write_read_ratio_threshold = 3.0;
+        
+        // DoS thresholds
+        config.dos_packet_threshold = 500;         // 500 packets/sec
+        config.dos_byte_threshold = 5'000'000;     // 5 MB/sec
+        config.dos_window = std::chrono::seconds(5);
+        
+        // Port scan detection
+        config.port_scan_threshold = 10;           // 10 unique ports
+        config.port_scan_window = std::chrono::seconds(10);
+        
+        // Behavioral anomalies
+        config.write_read_ratio_threshold = 3.0;   // 3:1 write/read ratio
+        config.exception_rate_threshold = 10;      // 10 exceptions/min
+        
+        // Auto-mitigation
         config.auto_block_enabled = true;
         config.auto_block_duration = std::chrono::minutes(30);
+        config.max_concurrent_blocks = 1000;
         
-        // Whitelist trusted SCADA master
+        // Whitelist trusted SCADA master (won't be blocked)
         config.whitelisted_ips.push_back(net::ipv4({192, 168, 1, 10}));
         
+        // Monitored ports
+        config.monitored_ports = {502, 20000};  // Modbus, DNP3
+        
+        // ====================================================================
+        // Initialize Grid-Watcher
+        // ====================================================================
         std::cout << "Initializing Grid-Watcher...\n";
-        g_watcher = std::make_unique<scada::GridWatcher>(config, "grid_watcher_demo.log");
+        g_watcher = std::make_unique<scada::GridWatcher>(
+            config, 
+            "grid_watcher_demo.log"
+        );
         
         std::cout << "Starting Grid-Watcher...\n";
         g_watcher->start();
         
-        std::cout << "\n✓ Grid-Watcher is now monitoring the SCADA network\n";
+        std::wcout << "\n✓ Grid-Watcher is now monitoring the SCADA network\n";
         std::cout << "  Press Ctrl+C to stop\n\n";
         
-        // Wait a bit for initialization
+        // Wait for initialization
         std::this_thread::sleep_for(std::chrono::seconds(2));
         
-        // Run simulation scenarios
+        // ====================================================================
+        // Run Attack Simulation Scenarios
+        // ====================================================================
         std::cout << "\n" << std::string(80, '=') << "\n";
         std::cout << "Starting Attack Simulation Scenarios\n";
         std::cout << std::string(80, '=') << "\n";
@@ -272,18 +378,20 @@ int main() {
         std::this_thread::sleep_for(std::chrono::seconds(2));
         printStatistics(*g_watcher);
         
-        // More normal traffic to show recovery
+        // Scenario 6: Recovery with normal traffic
         std::cout << "\n=== System Recovery: Normal Traffic Resumed ===\n";
         simulateNormalTraffic(*g_watcher, 30);
         std::this_thread::sleep_for(std::chrono::seconds(2));
         
-        // Final statistics
+        // ====================================================================
+        // Final Statistics
+        // ====================================================================
         std::cout << "\n" << std::string(80, '=') << "\n";
         std::cout << "              FINAL DEMONSTRATION RESULTS\n";
         std::cout << std::string(80, '=') << "\n";
         printStatistics(*g_watcher);
         
-        std::cout << "\n✓ Demonstration completed successfully!\n";
+        std::wcout << "\n✓ Demonstration completed successfully!\n";
         std::cout << "  Check 'grid_watcher_demo.log' for detailed logs\n";
         std::cout << "\n  Press Ctrl+C to exit or wait 10 seconds...\n";
         
@@ -293,7 +401,7 @@ int main() {
         g_watcher->stop();
         
     } catch (const std::exception& e) {
-        std::cerr << "\n❌ FATAL ERROR: " << e.what() << "\n";
+        std::wcerr << "\n❌ FATAL ERROR: " << e.what() << "\n";
         return 1;
     }
     

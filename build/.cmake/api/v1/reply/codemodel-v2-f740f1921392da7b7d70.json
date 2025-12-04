@@ -1,0 +1,80 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-ed700abe973e680f6329.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "grid_watcher",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "callgrind::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-callgrind-Debug-3d21957a13e2bfaef1e5.json",
+					"name" : "callgrind",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "grid_watcher::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-grid_watcher-Debug-63fbbdcbf0d086dbde7c.json",
+					"name" : "grid_watcher",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "memcheck::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-memcheck-Debug-f9c32a7b4fcc6e990acd.json",
+					"name" : "memcheck",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/Project/zuu_net/build",
+		"source" : "D:/Project/zuu_net"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}

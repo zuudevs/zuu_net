@@ -2,6 +2,18 @@
 	"entries" : 
 	[
 		{
+			"name" : "BUILD_BENCHMARKS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Build performance benchmarks"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
+		},
+		{
 			"name" : "BUILD_DOCS",
 			"properties" : 
 			[
@@ -763,7 +775,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "zuu_net"
+			"value" : "grid_watcher"
 		},
 		{
 			"name" : "CMAKE_PROJECT_SPDX_LICENSE",
@@ -1178,6 +1190,42 @@
 			"value" : "FALSE"
 		},
 		{
+			"name" : "ENABLE_LTO",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable Link-Time Optimization"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
+		},
+		{
+			"name" : "ENABLE_NATIVE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable -march=native optimization"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
+		},
+		{
+			"name" : "ENABLE_PROFILING",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable profiling support"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
 			"name" : "GridWatcher_BINARY_DIR",
 			"properties" : 
 			[
@@ -1203,6 +1251,42 @@
 		},
 		{
 			"name" : "GridWatcher_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "D:/Project/zuu_net"
+		},
+		{
+			"name" : "grid_watcher_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "D:/Project/zuu_net/build"
+		},
+		{
+			"name" : "grid_watcher_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "grid_watcher_SOURCE_DIR",
 			"properties" : 
 			[
 				{

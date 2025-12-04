@@ -1,8 +1,8 @@
 [
 {
   "directory": "D:/Project/zuu_net/build",
-  "command": "D:\\dev-tools\\LLVM\\bin\\clang-cl.exe  /nologo -TP -ID:\\Project\\zuu_net\\include /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -clang:-std=c++23 -MDd -Wall -Wextra -Wpedantic -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-sign-conversion -Wno-c++11-narrowing /FoCMakeFiles\\zuu_net.dir\\src\\main.cpp.obj /FdCMakeFiles\\zuu_net.dir\\ -c -- D:\\Project\\zuu_net\\src\\main.cpp",
+  "command": "D:\\dev-tools\\LLVM\\bin\\clang-cl.exe  /nologo -TP -D_WIN32_WINNT=0x0601 -ID:\\Project\\zuu_net\\include /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -clang:-std=c++23 -MDd -flto=thin -Wall -Wextra -Wpedantic -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-sign-conversion -Wno-c++11-narrowing -g -O0 /FoCMakeFiles\\grid_watcher.dir\\src\\main.cpp.obj /FdCMakeFiles\\grid_watcher.dir\\ -c -- D:\\Project\\zuu_net\\src\\main.cpp",
   "file": "D:/Project/zuu_net/src/main.cpp",
-  "output": "D:/Project/zuu_net/build/CMakeFiles/zuu_net.dir/src/main.cpp.obj"
+  "output": "D:/Project/zuu_net/build/CMakeFiles/grid_watcher.dir/src/main.cpp.obj"
 }
 ]
